@@ -21,8 +21,8 @@ Este proyecto expone una API HTTP en AWS (Lambda + API Gateway) que invoca un en
 
 Desde la carpeta del proyecto, ejecuta:
 
-serverless login
-serverless deploy
+- serverless login
+- serverless deploy
 
 Al finalizar, Serverless mostrara la URL del endpoint HTTP creado.
 
