@@ -1,0 +1,67 @@
+{
+  "info": {
+    "name": "API Salary Prediction",
+    "description": "Coleccion para probar la API de prediccion de sueldo desplegada con Serverless en AWS.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Predict Salary",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"years_of_experience\": \"5\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{baseUrl}}/predecir/sueldo",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "predecir",
+            "sueldo"
+          ]
+        },
+        "description": "Invoca la Lambda que llama al endpoint de SageMaker para estimar salario por anios de experiencia."
+      },
+      "response": []
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://REEMPLAZAR.execute-api.us-east-1.amazonaws.com",
+      "type": "string"
+    }
+  ],
+  "event": [
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "exec": [
+          "pm.test('Status code is 200', function () {",
+          "    pm.response.to.have.status(200);",
+          "});",
+          "",
+          "pm.test('Response has salary_prediction', function () {",
+          "    var jsonData = pm.response.json();",
+          "    pm.expect(jsonData).to.have.property('salary_prediction');",
+          "});"
+        ]
+      }
+    }
+  ]
+}
